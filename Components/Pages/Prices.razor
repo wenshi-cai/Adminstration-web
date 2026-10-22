@@ -1,0 +1,10 @@
+@page "/prices"
+@inject IAdminApi Api
+<h1>Parking prices</h1>
+@if(error is not null){<p class="error">@error</p>}<EditForm Model="edit" OnValidSubmit="Save"><DataAnnotationsValidator/><label>Facility <InputText @bind-Value="edit.FacilityName"/></label><label>Price per hour <InputNumber @bind-Value="edit.PricePerHour"/></label><label>Currency <InputText @bind-Value="edit.Currency"/></label><button type="submit">Save price</button><button type="button" @onclick="Reset">Clear</button></EditForm>
+<table><thead><tr><th>Facility</th><th>Hourly price</th><th>Currency</th><th>Actions</th></tr></thead><tbody>@foreach(var p in prices){<tr><td>@p.FacilityName</td><td>@p.PricePerHour</td><td>@p.Currency</td><td><button @onclick="()=>Edit(p)">Edit</button><button @onclick="()=>Delete(p.Id)">Delete</button></td></tr>}</tbody></table>
+@code {List<ParkingPrice> prices=[]; ParkingPrice edit=new(); string? error;
+protected override async Task OnInitializedAsync()=>await Load(); async Task Load(){try{prices=await Api.GetPricesAsync();}catch(Exception e){error=e.Message;}}
+void Edit(ParkingPrice p)=>edit=new(){Id=p.Id,FacilityName=p.FacilityName,PricePerHour=p.PricePerHour,Currency=p.Currency}; void Reset()=>edit=new();
+async Task Save(){try{await Api.SavePriceAsync(edit);Reset();await Load();}catch(Exception e){error=e.Message;}}
+async Task Delete(Guid id){try{await Api.DeletePriceAsync(id);await Load();}catch(Exception e){error=e.Message;}} }

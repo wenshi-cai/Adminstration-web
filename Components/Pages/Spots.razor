@@ -1,0 +1,10 @@
+@page "/spots"
+@inject IAdminApi Api
+<h1>Parking spots</h1>
+@if(error is not null){<p class="error">@error</p>}<EditForm Model="edit" OnValidSubmit="Save"><DataAnnotationsValidator/><label>Facility <InputText @bind-Value="edit.FacilityName"/></label><label>Spot number <InputText @bind-Value="edit.SpotNumber"/></label><label>Status <InputSelect @bind-Value="edit.Status"><option>Available</option><option>Booked</option><option>In Use</option><option>Unavailable</option></InputSelect></label><label><InputCheckbox @bind-Value="edit.IsAccessible"/> Accessible spot</label><button type="submit">Save spot</button><button type="button" @onclick="Reset">Clear</button></EditForm>
+<table><thead><tr><th>Facility</th><th>Spot</th><th>Status</th><th>Accessible</th><th>Actions</th></tr></thead><tbody>@foreach(var s in spots){<tr><td>@s.FacilityName</td><td>@s.SpotNumber</td><td>@s.Status</td><td>@(s.IsAccessible?"Yes":"No")</td><td><button @onclick="()=>Edit(s)">Edit</button><button @onclick="()=>Delete(s.Id)">Delete</button></td></tr>}</tbody></table>
+@code {List<ParkingSpot> spots=[]; ParkingSpot edit=new(); string? error;
+protected override async Task OnInitializedAsync()=>await Load(); async Task Load(){try{spots=await Api.GetSpotsAsync();}catch(Exception e){error=e.Message;}}
+void Edit(ParkingSpot s)=>edit=new(){Id=s.Id,FacilityName=s.FacilityName,SpotNumber=s.SpotNumber,Status=s.Status,IsAccessible=s.IsAccessible};void Reset()=>edit=new();
+async Task Save(){try{await Api.SaveSpotAsync(edit);Reset();await Load();}catch(Exception e){error=e.Message;}}
+async Task Delete(Guid id){try{await Api.DeleteSpotAsync(id);await Load();}catch(Exception e){error=e.Message;}} }

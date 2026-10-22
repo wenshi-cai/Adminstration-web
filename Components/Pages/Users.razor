@@ -1,0 +1,11 @@
+@page "/users"
+@inject IAdminApi Api
+<h1>User accounts</h1><input placeholder="Search name/email" @bind="search" @bind:event="oninput"><button @onclick="Load">Refresh</button>
+@if(error is not null){<p class="error">@error</p>}
+@if(loading){<p>Loading...</p>}else{<table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Action</th></tr></thead><tbody>
+@foreach(var u in users.Where(x=>$"{x.FullName} {x.Email}".Contains(search,StringComparison.OrdinalIgnoreCase))){<tr><td>@u.FullName</td><td>@u.Email</td><td>@u.Role</td><td>@(u.IsActive?"Active":"Inactive")</td><td><button @onclick="()=>Toggle(u)">@(u.IsActive?"Deactivate":"Activate")</button></td></tr>}
+</tbody></table>}
+@code { List<UserAccount> users=[]; string search=""; string? error; bool loading=true;
+protected override async Task OnInitializedAsync()=>await Load();
+async Task Load(){loading=true;error=null;try{users=await Api.GetUsersAsync();}catch(Exception e){error=e.Message;}finally{loading=false;}}
+async Task Toggle(UserAccount u){try{await Api.SetUserActiveAsync(u.Id,!u.IsActive);u.IsActive=!u.IsActive;}catch(Exception e){error=e.Message;}} }

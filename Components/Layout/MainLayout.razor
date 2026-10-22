@@ -1,0 +1,28 @@
+@inherits LayoutComponentBase
+
+<div class="page">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/">Smart Parking Admin</a>
+        </div>
+
+        <nav>
+            <NavLink href="/" Match="NavLinkMatch.All">
+                Dashboard
+            </NavLink>
+            <NavLink href="/users">
+                Users
+            </NavLink>
+            <NavLink href="/prices">
+                Parking Prices
+            </NavLink>
+            <NavLink href="/spots">
+                Parking Spots
+            </NavLink>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        @Body
+    </main>
+</div>
