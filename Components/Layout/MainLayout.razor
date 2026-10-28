@@ -1,26 +1,16 @@
 @inherits LayoutComponentBase
 
-<div class="page">
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <a href="/">Smart Parking Admin</a>
-        </div>
+<div class="app-container">
+    <header class="topbar">
+        <a href="/" class="brand">Smart Parking Admin</a>
 
-        <nav>
-            <NavLink href="/" Match="NavLinkMatch.All">
-                Dashboard
-            </NavLink>
-            <NavLink href="/users">
-                Users
-            </NavLink>
-            <NavLink href="/prices">
-                Parking Prices
-            </NavLink>
-            <NavLink href="/spots">
-                Parking Spots
-            </NavLink>
+        <nav class="navbar">
+            <NavLink href="/" Match="NavLinkMatch.All">Dashboard</NavLink>
+            <NavLink href="/users">Users</NavLink>
+            <NavLink href="/prices">Parking Prices</NavLink>
+            <NavLink href="/spots">Parking Spots</NavLink>
         </nav>
-    </aside>
+    </header>
 
     <main class="main-content">
         @Body

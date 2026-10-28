@@ -1,1 +1,440 @@
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7f4;color:#20372d}.shell{display:flex;min-height:100vh}aside{width:220px;background:#193c32;color:white;padding:24px;display:flex;flex-direction:column;gap:16px}aside a{color:#e0eee5;text-decoration:none;padding:10px;border-radius:8px}aside a.active{background:#315c4b}small{display:block;color:#b6d8c2}main{padding:36px;flex:1;min-width:0}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.cards a,form,table{background:white;border:1px solid #dfe8e1;border-radius:10px;padding:16px}.cards a{color:inherit;text-decoration:none}input,select{padding:8px;margin:5px;border:1px solid #ccd8cf;border-radius:6px}button{padding:8px 12px;margin:4px;border:0;border-radius:6px;background:#28694b;color:white;cursor:pointer}table{border-collapse:collapse;width:100%;margin-top:20px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e8eee9}.notice{padding:14px;background:#e4f1e8;border-radius:8px;margin-top:24px}.error{color:#a12f25}@media(max-width:800px){.shell{display:block}aside{width:auto}.cards{grid-template-columns:1fr}main{padding:18px}}
+
+    /* =========================================
+       Smart Parking Admin - Pink & Cream Theme
+       ========================================= */
+
+:root {
+    /* Color Palette */
+    --main-background: #FFF8F5;
+    --card-background: #FFFFFF;
+    --input-background: #FCE7EF;
+    --input-border: #E8A1BB;
+    --primary-button: #B85C83;
+    --heading-color: #684858;
+    --secondary-text: #876C79;
+    --decorative-color: #F6D8BD;
+
+    /* Additional UI Colors */
+    --primary-button-hover: #A64D73;
+    --border-color: #F0D5DF;
+    --shadow-color: rgba(104, 72, 88, 0.08);
+    --success-color: #527D68;
+    --danger-color: #B94A62;
+
+    /* General Settings */
+    --border-radius: 12px;
+    --card-shadow: 0 4px 16px var(--shadow-color);
+}
+
+/* =========================================
+   Global Styles
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--main-background);
+    color: var(--secondary-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   Headings
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p,
+label,
+small,
+.secondary-text {
+    color: var(--secondary-text);
+}
+
+/* =========================================
+   Links
+   ========================================= */
+
+a {
+    color: var(--primary-button);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-button-hover);
+}
+
+/* =========================================
+   Main Layout
+   ========================================= */
+
+.page,
+main {
+    background-color: var(--main-background);
+}
+
+.page-title {
+    color: var(--heading-color);
+    margin-bottom: 24px;
+}
+
+.page-description {
+    color: var(--secondary-text);
+    margin-bottom: 24px;
+}
+
+/* =========================================
+   Cards and Forms
+   ========================================= */
+
+.card,
+.form-card,
+.dashboard-card,
+.content-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.card h2,
+.card h3,
+.form-card h2,
+.form-card h3 {
+    color: var(--heading-color);
+}
+
+/* =========================================
+   Form Inputs
+   ========================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-background);
+    color: var(--heading-color);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--secondary-text);
+    opacity: 0.8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-button);
+    box-shadow: 0 0 0 3px rgba(184, 92, 131, 0.15);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+
+button,
+.btn,
+button[type="submit"],
+input[type="submit"] {
+    background-color: var(--primary-button);
+    color: #FFFFFF;
+    border: 1px solid var(--primary-button);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+button:hover,
+.btn:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--primary-button-hover);
+    border-color: var(--primary-button-hover);
+}
+
+button:active,
+.btn:active {
+    transform: translateY(1px);
+}
+
+button:disabled,
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Secondary Buttons */
+
+.btn-secondary,
+button.secondary {
+    background-color: var(--decorative-color);
+    color: var(--heading-color);
+    border-color: var(--decorative-color);
+}
+
+.btn-secondary:hover,
+button.secondary:hover {
+    background-color: #F0C8A8;
+    border-color: #F0C8A8;
+}
+
+/* =========================================
+   Tables
+   ========================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-background);
+    color: var(--secondary-text);
+}
+
+thead {
+    background-color: var(--input-background);
+}
+
+th {
+    color: var(--heading-color);
+    font-weight: 700;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:hover {
+    background-color: #FFF3F6;
+}
+
+/* =========================================
+   Badges and Status
+   ========================================= */
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-success {
+    background-color: #E5F1E9;
+    color: var(--success-color);
+}
+
+.badge-danger {
+    background-color: #FBE7EB;
+    color: var(--danger-color);
+}
+
+.badge-pending {
+    background-color: var(--decorative-color);
+    color: var(--heading-color);
+}
+
+/* =========================================
+   Decorative Elements
+   ========================================= */
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 24px 0;
+}
+
+.decorative,
+.accent {
+    color: var(--primary-button);
+}
+
+.decorative-background {
+    background-color: var(--decorative-color);
+}
+
+/* =========================================
+   Alerts
+   ========================================= */
+
+.alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.alert-success {
+    background-color: #E5F1E9;
+    color: var(--success-color);
+    border: 1px solid #C7DFD0;
+}
+
+.alert-error {
+    background-color: #FBE7EB;
+    color: var(--danger-color);
+    border: 1px solid #F0C5D0;
+}
+
+/* =========================================
+   Responsive Layout
+   ========================================= */
+
+@media (max-width: 768px) {
+    .card,
+    .form-card,
+    .dashboard-card,
+    .content-card {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px 10px;
+    }
+}
+           /* Horizontal Navigation Bar */
+       .topbar {
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+           align-items: center;
+           flex-wrap: nowrap;
+           width: 100%;
+           padding: 18px 40px;
+           background-color: var(--card-background);
+           border-bottom: 1px solid var(--input-border);
+           box-shadow: 0 2px 8px var(--shadow-color);
+       }
+
+    .brand {
+        flex-shrink: 0;
+        color: var(--heading-color);
+        font-size: 22px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: nowrap;
+    }
+
+    .navbar a {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 8px;
+        color: var(--secondary-text);
+        text-decoration: none;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .navbar a:hover {
+        background-color: var(--input-background);
+        color: var(--primary-button);
+    }
+
+    .navbar a.active {
+        background-color: var(--primary-button);
+        color: #FFFFFF;
+    }
+
+    .main-content {
+        padding: 32px 40px;
+    }
+
+    /* Responsive layout for smaller screens */
+    @media (max-width: 768px) {
+        .topbar {
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 16px 20px;
+        }
+
+        .navbar {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .main-content {
+            padding: 24px 20px;
+        }
+    }
+    
